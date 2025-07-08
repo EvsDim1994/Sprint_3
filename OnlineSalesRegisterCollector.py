@@ -9,17 +9,17 @@ class OnlineSalesRegisterCollector:
         self.__tax_rate = {'чипсы': 20, 'кола': 20, 'печенье': 20, 'молоко': 10, 'кефир': 10}
 
     @property
-    def __name_items(self):
+    def name_items(self):
         return self.__name_items
     
     @property
-    def __number_items(self):
+    def number_items(self):
         return self.__number_items
     
     def add_item_to_cheque(self, name):
         if len(name) == 0 or len(name) > 40:
             raise ValueError('Нельзя добавить товар, если в его названии нет символов или их больше 40')
-        if name not in self.__item_price.keys:
+        if name not in self.__item_price:
             raise NameError('Позиция отсутствует в товарном справочнике')
         else:
             self.__name_items.append(name)
@@ -78,9 +78,9 @@ class OnlineSalesRegisterCollector:
 
     @staticmethod
     def get_telephone_number(telephone_number):
-        if not telephone_number.isdigit():
+        if not str(telephone_number).isdigit():
             raise ValueError('Необходимо ввести цифры')
-        elif len(telephone_number) > 10:
+        elif len(str(telephone_number)) > 10:
             raise ValueError('Необходимо ввести 10 цифр после "+7"')
         else:
             phone = f'+7{telephone_number}'
